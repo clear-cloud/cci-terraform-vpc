@@ -6,10 +6,6 @@ output "nat_eips" {
   value = "${join(",", aws_eip.nat.*.public_ip)}"
 }
 
-output "dns_zone_id" {
-  value = "${aws_route53_zone.vpc_public_zone.zone_id}"
-}
-
 output "private_route_table" {
   value = "${join(",", aws_route_table.private_route_table.*.id)}"
 }
