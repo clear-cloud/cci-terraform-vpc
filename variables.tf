@@ -10,7 +10,7 @@ variable "public_subnets" {}
 variable "private_subnets" {}
 variable "secondary_private_subnets" {
   description = "Secondary private CIDR range"
-  default = ""
+  default = "0"
 }
 variable "data_subnets" {}
 variable "environment" {}
