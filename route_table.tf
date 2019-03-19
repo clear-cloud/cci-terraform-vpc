@@ -58,7 +58,7 @@ resource "aws_route_table" "public_route_table" {
 # Route for public routing table
 #--------------------------------------------------------------
 resource "aws_route" "public_route" {
-  count                  = "${var.igw_enabled > 0 ? (length(split(",", var.public_subnets))): 0}"
+  count                  = "${length(split(",", var.public_subnets))}"
   route_table_id         = "${element(aws_route_table.public_route_table.*.id, count.index)}"
   destination_cidr_block = "0.0.0.0/0"
   gateway_id             = "${aws_internet_gateway.gw.id}"

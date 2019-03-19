@@ -28,12 +28,6 @@ variable "vpc_enable_flow_logs" {
   description = "Set to 1 to enable flow logs for the VPC"
   default     = "0"
 }
-
-variable "igw_enabled" {
-  description = "Allows for adding or removing Internet Gateway"
-  default     = "1"
-}
-
 variable "nat_gateway_enabled" {
   description = "Allows enabling or disabling NAT gateway(s)"
   default     = "1"
