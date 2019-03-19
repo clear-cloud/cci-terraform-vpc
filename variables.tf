@@ -8,7 +8,10 @@ variable "dns_domain" {}
 variable "availability_zones" {}
 variable "public_subnets" {}
 variable "private_subnets" {}
-variable "secondary_private_subnets" {}
+variable "secondary_private_subnets" {
+  description "Secondary private CIDR range"
+  default = ""
+}
 variable "data_subnets" {}
 variable "environment" {}
 variable "vpc_contact" {}
