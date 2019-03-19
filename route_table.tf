@@ -60,7 +60,7 @@ resource "aws_route_table" "secondary_private_route_table" {
 }
 
 #--------------------------------------------------------------
-# Route for private routing table
+# Route for Secondary private routing table
 #--------------------------------------------------------------
 resource "aws_route" "secondary_private_route" {
   count                  = "${var.nat_gateway_enabled > 0 ? (length(split(",", var.secondary_private_subnets))): 0}"
@@ -128,3 +128,13 @@ resource "aws_route_table" "data_route_table" {
     Orchestration = "${var.global_orchestration}"
   }
 }
+
+#--------------------------------------------------------------
+# Association between data subnets and route tables
+#--------------------------------------------------------------
+resource "aws_route_table_association" "data_rt_assoc" {
+  count          = "${length(split(",", var.data_subnets))}"
+  subnet_id      = "${element(aws_subnet.data_subnets.*.id, count.index)}"
+  route_table_id = "${element(aws_route_table.data_route_table.*.id, count.index)}"
+}
+
