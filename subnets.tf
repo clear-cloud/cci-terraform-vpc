@@ -20,7 +20,7 @@ resource "aws_subnet" "public_subnets" {
 }
 
 #--------------------------------------------------------------
-# Private subnets resource definition
+# Primary Private subnets resource definition
 #--------------------------------------------------------------
 
 resource "aws_subnet" "private_subnets" {
@@ -32,6 +32,27 @@ resource "aws_subnet" "private_subnets" {
 
   tags {
     Name          = "${var.environment}.sn.private.${element(split(",", var.availability_zones), count.index)}"
+    Environment   = "${var.environment}"
+    Description   = "private.${element(split(",", var.availability_zones), count.index)}"
+    Contact       = "${var.vpc_contact}"
+    Orchestration = "${var.global_orchestration}"
+    Visibility    = "private"
+  }
+}
+
+#--------------------------------------------------------------
+# Secondary Private subnets resource definition
+#--------------------------------------------------------------
+
+resource "aws_subnet" "secondary_private_subnets" {
+  count                   = "${length(split(",", var.secondary_private_subnets))}"
+  vpc_id                  = "${aws_vpc.main.id}"
+  cidr_block              = "${element(split(",", var.secondary_private_subnets), count.index)}"
+  availability_zone       = "${element(split(",", var.availability_zones), count.index)}"
+  map_public_ip_on_launch = false
+
+  tags {
+    Name          = "${var.environment}.sn.private.secondary.${element(split(",", var.availability_zones), count.index)}"
     Environment   = "${var.environment}"
     Description   = "private.${element(split(",", var.availability_zones), count.index)}"
     Contact       = "${var.vpc_contact}"

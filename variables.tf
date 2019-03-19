@@ -8,6 +8,7 @@ variable "dns_domain" {}
 variable "availability_zones" {}
 variable "public_subnets" {}
 variable "private_subnets" {}
+variable "secondary_private_subnets" {}
 variable "data_subnets" {}
 variable "environment" {}
 variable "vpc_contact" {}
@@ -26,4 +27,14 @@ variable "vpc_propagating_vgws" {
 variable "vpc_enable_flow_logs" {
   description = "Set to 1 to enable flow logs for the VPC"
   default     = "0"
+}
+
+variable "igw_enabled" {
+  description = "Allows for adding or removing Internet Gateway"
+  default     = "1"
+}
+
+variable "nat_gateway_enabled" {
+  description = "Allows enabling or disabling NAT gateway(s)"
+  default     = "1"
 }
