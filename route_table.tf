@@ -137,4 +137,3 @@ resource "aws_route_table_association" "data_rt_assoc" {
   subnet_id      = "${element(aws_subnet.data_subnets.*.id, count.index)}"
   route_table_id = "${element(aws_route_table.data_route_table.*.id, count.index)}"
 }
-
