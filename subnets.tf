@@ -45,7 +45,7 @@ resource "aws_subnet" "private_subnets" {
 #--------------------------------------------------------------
 
 resource "aws_subnet" "secondary_private_subnets" {
-  count                   = "${var.secondary_private_subnets > 0 ? length(split(",", var.secondary_private_subnets)): 0}"
+  count                   = "${length(split(",", var.secondary_private_subnets))}"
   vpc_id                  = "${aws_vpc.main.id}"
   cidr_block              = "${element(split(",", var.secondary_private_subnets), count.index)}"
   availability_zone       = "${element(split(",", var.availability_zones), count.index)}"
