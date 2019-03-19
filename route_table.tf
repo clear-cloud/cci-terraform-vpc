@@ -70,7 +70,7 @@ resource "aws_route" "secondary_private_route" {
 }
 
 #--------------------------------------------------------------
-# Association between private subnets and route tables
+# Association between Secondary private subnets and route tables
 #--------------------------------------------------------------
 resource "aws_route_table_association" "secondary_private_rt_assoc" {
   count          = "${length(split(",", var.secondary_private_subnets))}"
@@ -132,9 +132,9 @@ resource "aws_route_table" "data_route_table" {
 #--------------------------------------------------------------
 # Route for data routing table
 #--------------------------------------------------------------
-resource "aws_route" "data_route" {
-  count          = "${length(split(",", var.data_subnets))}"
-  route_table_id = "${element(aws_route_table.data_route_table.*.id, count.index)}"
-
+#resource "aws_route" "data_route" {
+#  count          = "${length(split(",", var.data_subnets))}"
+#  route_table_id = "${element(aws_route_table.data_route_table.*.id, count.index)}"
+#
   # Default route, mapping the VPC's CIDR block to "local", is created implicitly and does not need to be specified.
-}
+#}
