@@ -73,7 +73,7 @@ resource "aws_route" "secondary_private_route" {
 # Association between Secondary private subnets and route tables
 #--------------------------------------------------------------
 resource "aws_route_table_association" "secondary_private_rt_assoc" {
-  count          = "${var.secondary_private_subnets > 0 ? (length(split(",", var.secondary_private_subnets))): 0}"
+  count          = "${length(split(",", var.secondary_private_subnets))}"
   subnet_id      = "${element(aws_subnet.secondary_private_subnets.*.id, count.index)}"
   route_table_id = "${element(aws_route_table.secondary_private_route_table.*.id, count.index)}"
 }
