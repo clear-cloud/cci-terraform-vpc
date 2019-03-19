@@ -9,7 +9,7 @@ variable "availability_zones" {}
 variable "public_subnets" {}
 variable "private_subnets" {}
 variable "secondary_private_subnets" {
-  description "Secondary private CIDR range"
+  description = "Secondary private CIDR range"
   default = ""
 }
 variable "data_subnets" {}
