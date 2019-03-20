@@ -27,7 +27,7 @@ output "subnets_private" {
 }
 
 output "subnets_all" {
-  value = "${join(",", aws_subnet.public_subnets.*.id, aws_subnet.private_subnets.*.id, aws_subnet.secondary_private_subnets.*.id, aws_subnet.data_subnets.*.id}"
+ value = "${join(",", aws_subnet.public_subnets.*.id, aws_subnet.private_subnets.*.id, aws_subnet.secondary_private_subnets.*.id, aws_subnet.data_subnets.*.id)}"
 }
 
 output "vgw_id" {
