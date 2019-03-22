@@ -1,5 +1,5 @@
-resource "aws_security_group" "ssh_from_cci" {
-  name        = "ssh_from_cci"
+resource "aws_security_group" "vpc_sg" {
+  name        = "vpc_sg"
   description = "Allow inbound SSH from CCI IP ranges"
   vpc_id      = "${aws_vpc.main.id}"
 
@@ -18,9 +18,9 @@ resource "aws_security_group" "ssh_from_cci" {
   }
 
   tags {
-    Name          = "${var.environment}.sg.ssh_from_cci"
+    Name          = "${var.environment}.sg.global.vpc"
     Environment   = "${var.environment}"
-    Description   = "sg.ssh_from_cci"
+    Description   = "sg.global.vpc"
     Contact       = "${var.vpc_contact}"
     Orchestration = "${var.global_orchestration}"
   }

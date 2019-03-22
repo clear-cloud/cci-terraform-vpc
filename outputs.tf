@@ -1,5 +1,5 @@
-output "ssh_sg_from_cci" {
-  value = "${aws_security_group.ssh_from_cci.id}"
+output "vpc_sg" {
+  value = "${aws_security_group.vpc_sg.id}"
 }
 
 output "nat_eips" {
