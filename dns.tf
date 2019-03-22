@@ -1,8 +1,8 @@
 resource "aws_route53_zone" "route53_zone" {
-  
   name = "${var.dns_domain}"
-  vpc  {
-     vpc_id = "${aws_vpc.main.id}"
+
+  vpc {
+    vpc_id = "${aws_vpc.main.id}"
   }
 
   tags {

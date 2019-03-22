@@ -1,3 +1,7 @@
+output "dns_zone_id" {
+  value = "${aws_route53_zone.route53_zone.zone_id}"
+}
+
 output "vpc_sg" {
   value = "${aws_security_group.vpc_sg.id}"
 }
@@ -27,7 +31,7 @@ output "subnets_private" {
 }
 
 output "subnets_all" {
- value = "${join(",", aws_subnet.public_subnets.*.id, aws_subnet.private_subnets.*.id, aws_subnet.secondary_private_subnets.*.id, aws_subnet.data_subnets.*.id)}"
+  value = "${join(",", aws_subnet.public_subnets.*.id, aws_subnet.private_subnets.*.id, aws_subnet.secondary_private_subnets.*.id, aws_subnet.data_subnets.*.id)}"
 }
 
 output "vgw_id" {
