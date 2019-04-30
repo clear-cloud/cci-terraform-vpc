@@ -18,14 +18,14 @@ Upon launching the stack the following resources will be created:
 | Variable | Meaning |
 | :------- | :----- |
 | `all_cidr_blocks`| Default: 0.0.0.0/0 |
-| `pd_cidr_blocks` | |
 | `domain_name_servers` | Comma separated list of domain name servers to use in DHCP options|
-| `key_name` | |
-| `vpc_subnet` | |
-| `vpc_name` | |
-| `availability_zones` | |
-| `public_subnets` | |
-| `private_subnets` | |
+| `key_name` | ssh key name to use |
+| `vpc_subnet` | VPC CIDR block to use for the VPC |
+| `vpc_name` | Name of the VPC |
+| `availability_zones` | Availability Zones to use |
+| `public_subnets` | CIDR blocks for the public subnets |
+| `private_subnets` | CIDR blocks for the private subnets |
+| `data_subnets` | CIDR blocks for the data subnets |
 | `environment` |Environment to deploy for|
 | `vpc_propagating_vgws` |Comma separated list of Virtual Gateways that propagate routes to the private routing tables in addition to the one created. Optional. |
 | `vpc_enable_flow_logs` |Set to "1" to enable flow logs for the VPC, logging to Cloudwatch group `/aws/vpc/`. Defaults to "0"|
