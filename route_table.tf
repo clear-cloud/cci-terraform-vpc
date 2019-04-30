@@ -92,9 +92,9 @@ resource "aws_route_table" "data_route_table" {
 #--------------------------------------------------------------
 # Route for data routing table
 #--------------------------------------------------------------
-resource "aws_route" "data_route" {
-  count          = "${length(split(",", var.data_subnets))}"
-  route_table_id = "${element(aws_route_table.data_route_table.*.id, count.index)}"
-
+#resource "aws_route" "data_route" {
+#  count          = "${length(split(",", var.data_subnets))}"
+#  route_table_id = "${element(aws_route_table.data_route_table.*.id, count.index)}"
+#
   # Default route, mapping the VPC's CIDR block to "local", is created implicitly and does not need to be specified.
-}
+#}
