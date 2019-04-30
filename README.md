@@ -1,4 +1,4 @@
-##Standard VPC build.
+## Standard VPC build.
 
 Upon launching the stack the following resources will be created:
 
@@ -53,7 +53,6 @@ module "vpc" {
   environment               = "${var.environment}"
   dns_domain                = "${var.dns_domain}"
   private_subnets           = "${var.private_subnets}"
-  secondary_private_subnets = "${var.secondary_private_subnets}"
   data_subnets              = "${var.data_subnets}"
   public_subnets            = "${var.public_subnets}"
   vpc_subnet                = "${var.vpc_subnet_cidr}"
@@ -67,4 +66,7 @@ module "vpc" {
 * To see a plan of changes    : terraform plan
 * To apply                    : terraform apply 
 
+## Current DEV branches
+
+EnableDisableNATs - DEV branch where NAT gateways are not available by default and there is a secondary set of private subnets.
 
