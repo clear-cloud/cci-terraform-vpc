@@ -1,18 +1,18 @@
 resource "aws_flow_log" "vpc" {
-  count           = "${var.vpc_enable_flow_logs}"
-  iam_role_arn    = "${aws_iam_role.cloudwatch_publish.arn}"
-  log_destination = "${aws_cloudwatch_log_group.flow_log.arn}"
+  count           = var.vpc_enable_flow_logs
+  iam_role_arn    = aws_iam_role.cloudwatch_publish[0].arn
+  log_destination = aws_cloudwatch_log_group.flow_log[0].arn
   traffic_type    = "ALL"
-  vpc_id          = "${aws_vpc.main.id}"
+  vpc_id          = aws_vpc.main.id
 }
 
 resource "aws_cloudwatch_log_group" "flow_log" {
-  count = "${var.vpc_enable_flow_logs}"
+  count = var.vpc_enable_flow_logs
   name  = "/aws/vpc/${var.environment}"
 }
 
 resource "aws_iam_role" "cloudwatch_publish" {
-  count = "${var.vpc_enable_flow_logs}"
+  count = var.vpc_enable_flow_logs
   name  = "${var.environment}.flow_log_publish.role"
 
   assume_role_policy = <<EOF
@@ -30,12 +30,13 @@ resource "aws_iam_role" "cloudwatch_publish" {
   ]
 }
 EOF
+
 }
 
 resource "aws_iam_role_policy" "cloudwatch_publish" {
-  count = "${var.vpc_enable_flow_logs}"
-  name  = "${var.environment}.flow_log_publish.policy"
-  role  = "${aws_iam_role.cloudwatch_publish.id}"
+  count = var.vpc_enable_flow_logs
+  name = "${var.environment}.flow_log_publish.policy"
+  role = aws_iam_role.cloudwatch_publish[0].id
 
   policy = <<EOF
 {
@@ -55,4 +56,6 @@ resource "aws_iam_role_policy" "cloudwatch_publish" {
   ]
 }
 EOF
+
 }
+

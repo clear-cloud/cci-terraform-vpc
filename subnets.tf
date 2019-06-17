@@ -3,18 +3,18 @@
 #--------------------------------------------------------------
 
 resource "aws_subnet" "public_subnets" {
-  count                   = "${length(split(",", var.public_subnets))}"
-  vpc_id                  = "${aws_vpc.main.id}"
-  cidr_block              = "${element(split(",", var.public_subnets), count.index)}"
-  availability_zone       = "${element(split(",", var.availability_zones), count.index)}"
+  count                   = length(split(",", var.public_subnets))
+  vpc_id                  = aws_vpc.main.id
+  cidr_block              = element(split(",", var.public_subnets), count.index)
+  availability_zone       = element(split(",", var.availability_zones), count.index)
   map_public_ip_on_launch = true
 
-  tags {
+  tags = {
     Name          = "${var.environment}.sn.public.${element(split(",", var.availability_zones), count.index)}"
-    Environment   = "${var.environment}"
+    Environment   = var.environment
     Description   = "public.${element(split(",", var.availability_zones), count.index)}"
-    Contact       = "${var.vpc_contact}"
-    Orchestration = "${var.global_orchestration}"
+    Contact       = var.vpc_contact
+    Orchestration = var.global_orchestration
     Visibility    = "public"
   }
 }
@@ -24,18 +24,18 @@ resource "aws_subnet" "public_subnets" {
 #--------------------------------------------------------------
 
 resource "aws_subnet" "private_subnets" {
-  count                   = "${length(split(",", var.private_subnets))}"
-  vpc_id                  = "${aws_vpc.main.id}"
-  cidr_block              = "${element(split(",", var.private_subnets), count.index)}"
-  availability_zone       = "${element(split(",", var.availability_zones), count.index)}"
+  count                   = length(split(",", var.private_subnets))
+  vpc_id                  = aws_vpc.main.id
+  cidr_block              = element(split(",", var.private_subnets), count.index)
+  availability_zone       = element(split(",", var.availability_zones), count.index)
   map_public_ip_on_launch = false
 
-  tags {
+  tags = {
     Name          = "${var.environment}.sn.private.${element(split(",", var.availability_zones), count.index)}"
-    Environment   = "${var.environment}"
+    Environment   = var.environment
     Description   = "private.${element(split(",", var.availability_zones), count.index)}"
-    Contact       = "${var.vpc_contact}"
-    Orchestration = "${var.global_orchestration}"
+    Contact       = var.vpc_contact
+    Orchestration = var.global_orchestration
     Visibility    = "private"
   }
 }
@@ -45,18 +45,19 @@ resource "aws_subnet" "private_subnets" {
 #--------------------------------------------------------------
 
 resource "aws_subnet" "data_subnets" {
-  count                   = "${length(split(",", var.data_subnets))}"
-  vpc_id                  = "${aws_vpc.main.id}"
-  cidr_block              = "${element(split(",", var.data_subnets), count.index)}"
-  availability_zone       = "${element(split(",", var.availability_zones), count.index)}"
+  count                   = length(split(",", var.data_subnets))
+  vpc_id                  = aws_vpc.main.id
+  cidr_block              = element(split(",", var.data_subnets), count.index)
+  availability_zone       = element(split(",", var.availability_zones), count.index)
   map_public_ip_on_launch = false
 
-  tags {
+  tags = {
     Name          = "${var.environment}.sn.data.${element(split(",", var.availability_zones), count.index)}"
-    Environment   = "${var.environment}"
+    Environment   = var.environment
     Description   = "data.${element(split(",", var.availability_zones), count.index)}"
-    Contact       = "${var.vpc_contact}"
-    Orchestration = "${var.global_orchestration}"
+    Contact       = var.vpc_contact
+    Orchestration = var.global_orchestration
     Visibility    = "private"
   }
 }
+
