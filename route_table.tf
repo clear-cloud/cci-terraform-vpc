@@ -88,4 +88,3 @@ resource "aws_route_table" "data_route_table" {
     Orchestration = "${var.global_orchestration}"
   }
 }
-

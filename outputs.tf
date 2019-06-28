@@ -26,6 +26,10 @@ output "subnets_private" {
   value = "${join(",", aws_subnet.private_subnets.*.id)}"
 }
 
+output "subnets_data" {
+  value = "${join(",", aws_subnet.data_subnets.*.id)}"
+}
+
 output "vgw_id" {
   value = "${aws_vpn_gateway.main_vgw.id}"
 }
