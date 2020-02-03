@@ -4,6 +4,7 @@ variable "all_cidr_blocks" {
 
 variable "cci_cidr_blocks" {
   type = "list"
+  default = ["78.137.119.11/32", "81.201.139.52/32"]
 }
 variable "vpc_subnet" {}
 variable "dns_domain" {}
