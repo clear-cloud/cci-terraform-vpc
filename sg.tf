@@ -10,6 +10,13 @@ resource "aws_security_group" "ssh_from_cci" {
     cidr_blocks = ["${split(",", var.cci_cidr_blocks)}"]
   }
 
+  ingress {
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["81.201.139.52/32"]
+  }
+
   egress {
     from_port   = 0
     to_port     = 0
